@@ -28,6 +28,14 @@ export class CompaniesService {
     });
   }
 
+  findOneLogin(email: string) {
+    return this.prisma.company.findUnique({
+      where: {
+        email,
+      },
+    });
+  }
+
   update(id: string, updateCompanyDto: UpdateCompanyDto) {
     return this.prisma.company.update({
       where: {
