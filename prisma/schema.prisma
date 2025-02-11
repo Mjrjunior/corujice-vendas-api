@@ -35,7 +35,7 @@ model Products {
   name      String
   price     Float
   color     String?
-  companyId String
+  companyId String    @map("company_id")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
@@ -50,9 +50,9 @@ model Products {
 model Order {
   id        String      @id @default(cuid())
   code      String      @unique
-  status    OrderStatus
+  status    OrderStatus @default(PENDING)
   value     Float
-  companyId String
+  companyId String      @map("company_id")
   createdAt DateTime    @default(now()) @map("created_at")
   updatedAt DateTime    @updatedAt @map("updated_at")
   deletedAt DateTime?   @map("deleted_at")
@@ -70,8 +70,8 @@ model OrderItem {
   color       String?
   quantity    Int
   price       Float
-  productId   String
-  orderId     String
+  productId   String    @map("product_id")
+  orderId     String    @map("order_id")
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
