@@ -59,6 +59,8 @@ model Order {
 
   company   Company     @relation(fields: [companyId], references: [id])
   OrderItem OrderItem[]
+  Client    Client    @relation(fields: [clientId], references: [id])
+  clientId  String
 
   @@index([companyId])
   @@map("orders")
@@ -82,4 +84,21 @@ model OrderItem {
   @@index([productId])
   @@index([orderId])
   @@map("order_items")
+}
+
+model Client {
+  id          String    @id @default(cuid())
+  cpf         String?   @unique
+  cnpj        String?   @unique
+  email       String    @unique
+  name        String
+  nameFantasy String?   @map("name_fantasy")
+  dateBirth   DateTime? @map("date_birth")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  Order Order[]
+
+  @@map("clients")
 }
