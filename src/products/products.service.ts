@@ -17,10 +17,11 @@ export class ProductsService {
     });
   }
 
-  findAll(company_id: string) {
+  findAll(company_id: string, name?: string) {
     return this.prisma.products.findMany({
       where: {
         companyId: company_id,
+        ...(name && { name: { contains: name, mode: 'insensitive' } }),
       },
     });
   }

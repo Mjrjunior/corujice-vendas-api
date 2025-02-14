@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -27,9 +28,9 @@ export class ProductsController {
   }
 
   @Get()
-  findAll(@Req() req: Request) {
+  findAll(@Req() req: Request, @Query('name') name?: string) {
     const companyId = req['company'].id;
-    return this.productsService.findAll(companyId);
+    return this.productsService.findAll(companyId, name);
   }
 
   @Get(':id')
