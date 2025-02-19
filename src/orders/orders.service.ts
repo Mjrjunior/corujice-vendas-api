@@ -57,10 +57,18 @@ export class OrdersService {
     });
   }
 
-  findAll(company_id: string) {
+  findAll(company_id: string, clientName: string) {
     return this.prisma.order.findMany({
       where: {
         companyId: company_id,
+        ...(clientName && {
+          Client: {
+            name: {
+              contains: clientName,
+              mode: 'insensitive',
+            },
+          },
+        }),
       },
       include: {
         Client: true,
