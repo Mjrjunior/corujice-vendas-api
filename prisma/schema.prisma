@@ -59,7 +59,7 @@ model Order {
 
   company   Company     @relation(fields: [companyId], references: [id])
   OrderItem OrderItem[]
-  Client    Client    @relation(fields: [clientId], references: [id])
+  Client    Client      @relation(fields: [clientId], references: [id])
   clientId  String
 
   @@index([companyId])
@@ -92,6 +92,7 @@ model Client {
   cnpj        String?   @unique
   email       String    @unique
   name        String
+  phone       String    @unique
   nameFantasy String?   @map("name_fantasy")
   dateBirth   DateTime? @map("date_birth")
   createdAt   DateTime  @default(now()) @map("created_at")

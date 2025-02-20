@@ -39,6 +39,10 @@ class ClientDto {
   @MaxLength(14)
   cnpj?: string;
 
+  @IsString()
+  @MaxLength(15)
+  phone: string;
+
   @IsOptional()
   @IsString()
   nameFantasy?: string;
