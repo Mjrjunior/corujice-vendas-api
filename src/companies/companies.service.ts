@@ -17,7 +17,7 @@ export class CompaniesService {
   }
 
   findAll() {
-    return this.prisma.company.findMany();
+    return this.prisma.company.findMany(); 
   }
 
   findOne(id: string) {
